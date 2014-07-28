@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require angular-ui-router
+//= require_tree ../angular
+//= require ../angular/app.js.erb
 //= require_tree .

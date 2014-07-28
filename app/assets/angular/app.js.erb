@@ -1,0 +1,9 @@
+bread = angular.module('bread', ['ui.router', 'breadControllers']);
+
+bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
+  $locationProvider.html5Mode(true);
+  $stateProvider.state('landing', {
+      url: '/',
+      templateUrl: '<%= asset_path("templates/landing.html") %>'
+    });
+}]);
