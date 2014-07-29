@@ -1,4 +1,4 @@
-bread = angular.module('bread', ['ui.router', 'breadControllers']);
+bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
