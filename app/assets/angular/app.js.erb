@@ -2,8 +2,21 @@ bread = angular.module('bread', ['ui.router', 'breadControllers']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
-  $stateProvider.state('landing', {
-      url: '/',
-      templateUrl: '<%= asset_path("templates/landing.html") %>'
+  $stateProvider
+    .state('landing', {
+      url: '/ui/landing',
+      templateUrl: '<%= asset_path("templates/ui/landing.html") %>'
+    })
+    .state('userShow', {
+      url: '/ui/user_show',
+      templateUrl: '<%= asset_path("templates/ui/user_show.html") %>'
+    })
+    .state('breadShow', {
+      url: '/ui/bread_show',
+      templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>'
+    })
+    .state('breadIndex', {
+      url: '/ui/bread',
+      templateUrl: '<%= asset_path("templates/ui/bread.html") %>'
     });
 }]);
