@@ -1,10 +1,16 @@
-<h1 class="main-title">#RIPDATBREAD</h1>
+<div class="main-title">
+  <h1>#RIPDATBREAD</h1>
+  <h2>find awesome bread,<br> rip as you please!</h2>
+</div>
+
 <div class="container">
   <span ng-repeat="bread in breads" class="bread-card-container">
     <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false">
       <img ng-src="{{bread.imageUrl}}" class="bread-card">
       <div class="bread-card-overlay" ng-show="showOverlay">
         <h5>{{bread.name}}</h5>
+        <p>{{bread.rips}} rips | {{bread.dips}} dips</p>
+        <h3>hungy?</h3>
       </div>
     </div>
   </span>
