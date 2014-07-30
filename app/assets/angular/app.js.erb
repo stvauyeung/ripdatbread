@@ -21,7 +21,14 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
     })
     .state('breadShow', {
       url: '/ui/bread_show',
-      templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>'
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/ui/side_nav.html") %>'
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>',
+        }
+      }
     })
     .state('breadIndex', {
       url: '/ui/bread',
