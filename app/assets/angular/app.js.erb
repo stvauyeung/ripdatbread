@@ -1,3 +1,10 @@
+var bread1 = {
+  name: 'Yummy bread',
+  rips: 3,
+  dips: 12,
+  imageUrl: '/bread1.jpg'
+}
+
 bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
@@ -5,6 +12,7 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
   $stateProvider
     .state('landing', {
       url: '/ui/landing',
+      controller: 'StaticHomeCtrl',
       templateUrl: '<%= asset_path("templates/ui/landing.html") %>'
     })
     .state('userShow', {
