@@ -1,21 +1,24 @@
 app = angular.module('Directives', []);
 
-app.directive('sideBar', function() {
+app.directive('sideBarHide', function() {
   return {
     restrict: 'A',
     link: function(scope, elem, attr) {
       $('.sidebar-close-button').click(function() {
-        alert("Clicked");
-        $('#sidebar-wrapper').hide();
-        $('#wrapper').css({
-          'padding-left': '0px'
+        $('#sidebar-wrapper').hide(400, function() {
+          $('#wrapper').css({
+            'padding-left': '0px'
+          });
+          $('#wrapper').prepend('<h1 class="sidebar-open-button">&#8594;</h1>')
+          $('.sidebar-open-button').click(function() {
+            $('#sidebar-wrapper').show(200);
+            $('.sidebar-open-button').hide();
+            $('#wrapper').css({
+              'padding-left': '250px'
+            });
+          });
         });
-        // show the out arrow
-      });
-      // second block with another click handler
-      // select out arrow
-      // on click show() and add padding back
-      // hide out arrow
+      }); 
     }
   }
 });
