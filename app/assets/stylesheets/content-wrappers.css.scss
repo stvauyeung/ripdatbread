@@ -2,13 +2,12 @@
 
 #wrapper {
   padding-left: 250px;
-  position: absolute;
+  position: relative;
   transition: all 0.4s ease 0s;
 }
 
 #sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
+  left: 0px;
   width: 250px;
   background: $secondary-1-1;
   position: fixed;
@@ -19,7 +18,10 @@
 }
 
 #content-wrapper {
-  width: 100%;
+  position: relative;
+  margin: 0, auto;
+  left: 0;
+  right: 0;
 }
 
 .sidebar-nav {

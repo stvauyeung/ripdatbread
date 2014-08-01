@@ -1,11 +1,17 @@
+var user = {
+  name: 'Peanut'
+}
+
 var bread1 = {
   name: 'Yummy bread',
   rips: 3,
   dips: 12,
-  imageUrl: '/bread4.jpg'
+  imageUrl: '/bread4.jpg',
+  description: 'This is my favorite bread of all time.  Love this bread.',
+  user: user
 }
 
-bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap']);
+bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
@@ -23,10 +29,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       url: '/ui/bread_show',
       views: {
         'nav@': {
-          templateUrl: '<%= asset_path("templates/ui/side_nav.html") %>'
+          templateUrl: '<%= asset_path("templates/ui/side_nav.html") %>',
+          controller: "SideNavCtrl"
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>',
+          controller: 'BreadShowCtrl'
         }
       }
     })

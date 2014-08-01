@@ -6,4 +6,15 @@ controllers
     for (var i = 0; i < 30; i++) {
       $scope.breads.push(angular.copy(bread1));
     };
+  }])
+  .controller('BreadShowCtrl', ['$scope', function($scope) {
+    $scope.bread = angular.copy(bread1);
+    $scope.onInfo = true;
+  }])
+  .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+    console.log($rootScope.hideSideNav);
+    $scope.hideNav = function() {
+      $rootScope.hideSideNav = true;
+      console.log($rootScope.hideSideNav);
+    }
   }]);
