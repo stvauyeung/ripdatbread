@@ -1,5 +1,9 @@
 var user = {
-  name: 'Peanut'
+  name: 'Peanut',
+  imageUrl: '/swedish-chef.jpg',
+  breadCount: 25,
+  rips: 32,
+  dips: 18
 }
 
 var bread1 = {
@@ -23,7 +27,15 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
     })
     .state('userShow', {
       url: '/ui/user_show',
-      templateUrl: '<%= asset_path("templates/ui/user_show.html") %>'
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/ui/user_nav.html") %>',
+          controller: 'UserNavCtrl'
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/ui/user_show.html") %>'
+        }
+      }
     })
     .state('breadShow', {
       url: '/ui/bread_show',

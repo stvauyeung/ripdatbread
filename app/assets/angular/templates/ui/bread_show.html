@@ -1,28 +1,33 @@
 <div class="bread-show-container">
   <div class="bread-nav-links">
-    <a id="last">< LAST SLICE</a>
-    <a id="next">NEXT SLICE ></a>
+    <span id="last">&#9664; LAST SLICE</span>
+    <span id="next">NEXT SLICE &#9654;</span>
   </div>
-  <div class="bread-image-holder">
+  <div class="bread-image-holder" ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay =false">
     <img ng-src="{{bread.imageUrl}}">
+    <div ng-show="showOverlay" class="bread-img-overlay">
+      <h1>{{bread.name}}</h1>
+      <h2>{{bread.rips}} rips | {{bread.dips}} dips</h2>
+    </div>
   </div>
   <div class="bread-vote-buttons">
     <div class="btn btn-primary rip-btn">RIP IT</div>
     <div class="btn btn-primary dip-btn">DIP IT</div>
   </div>
   <div class="bread-info">
-    <div>
-      <span ng-click="onInfo = true">Dis Bread</span>
-      <span ng-click="onInfo = false">Bread Talk</span>
+    <div class="menu-toggle">
+      <span ng-click="onInfo = true" ng-style="breadInfoStyle()" id="bread-info">DIS BREAD</span>
+      <span ng-click="onInfo = false" ng-style="breadTalkStyle()">BREAD TALK</span>
     </div>
-    <div ng-show="onInfo == true">
-      <p>Added by: <a href="#">{{bread.user.name}}</a></p>
-      <p>{{bread.description}}</p>
-    </div>
-    <div ng-show="onInfo == false">
-      <form>
-        
-      </form>
+    <div class="toggle-content">
+      <div ng-show="onInfo == true">
+        <p>Added by: <a href="#">{{bread.user.name}}</a></p>
+        <p>"{{bread.description}}"</p>
+      </div>
+      <div ng-show="onInfo == false">
+        <textarea rows="3" placeholder="Got sm to say abt dis bread?"></textarea>
+        <div class="btn btn-add-comment">SAY IT</div>
+      </div>
     </div>
   </div>
 </div>
