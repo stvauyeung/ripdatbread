@@ -34,4 +34,11 @@ controllers
   }])
   .controller('UserNavCtrl', ['$scope', function($scope) {
     $scope.user = angular.copy(user);
+  }])
+  .controller('UserShowCtrl', ['$scope', function($scope) {
+    $scope.user = angular.copy(user)
+    $scope.breads = [];
+    for (var i = 0; i < 24; i++) {
+      $scope.breads.push(angular.copy(bread1));
+    };
   }]);

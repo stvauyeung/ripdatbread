@@ -33,7 +33,8 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
           controller: 'UserNavCtrl'
         },
         'main@': {
-          templateUrl: '<%= asset_path("templates/ui/user_show.html") %>'
+          templateUrl: '<%= asset_path("templates/ui/user_show.html") %>',
+          controller: 'UserShowCtrl'
         }
       }
     })

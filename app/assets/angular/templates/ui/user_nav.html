@@ -1,7 +1,13 @@
 <h1 class="sidebar-close-button" side-bar-hide>&#8592;</h1>
 <h2 class="user-nav-header">#RIPDATBREAD</h2>
 <img ng-src="{{user.imageUrl}}" class="profile-image">
-<div class="sidebar-links">
+<div class="profile-stats">
+  <h2>{{user.name}}</h2>
+  <p><b>{{user.breadCount}}</b> breads</p>
+  <p><b>{{user.rips}}</b> rips</p>
+  <p><b>{{user.dips}}</b> dips</p>
+</div>
+<div class="sidebar-small-links">
   <p><a href="#">yummy bread</a></p>
   <p><a href="#">warm bread</a></p>
   <p><a href="#">u even bake, bro?</a></p>
