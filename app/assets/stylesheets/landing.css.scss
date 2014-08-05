@@ -1,0 +1,76 @@
+.main-title {
+  position: fixed;
+  text-align: center;
+  top:35%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  color: white;
+  z-index: 50;
+  width: 100%;
+  text-shadow: 0 2px 2px rgba(0,0,0,0.8);
+
+  h1 {
+    font-size: 600%;
+    width: auto;
+  }
+}
+#landing-container {
+  position: absolute;
+  width: 100%;
+  line-height: 0;
+  -webkit-column-count: 4;
+  -webkit-column-gap:   0px;
+  -moz-column-count:    4;
+  -moz-column-gap:      0px;
+  column-count:         4;
+  column-gap:           0px;
+  .bread-card-container {
+    position: relative;
+    width: 100% !important;
+    height: auto !important;
+    .bread-card-inner-container {
+      position: relative;
+      width: 100% !important;
+      height: auto !important;
+      overflow: hidden;
+      .bread-card {
+        position: relative;
+        width: 100% !important;
+        height: auto !important;
+      }
+      .bread-card-overlay {
+        position: absolute;
+        opacity: 0;
+        text-align: center;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        color: white;
+        background-color: rgba(0, 0, 0, .4);
+        z-index: 10;
+        h5 {
+          margin-top: 30px;
+          font-size: 22px; 
+          font-weight: 300; 
+          line-height: 200%
+        }
+
+        p {
+          font-size: 16px; 
+          font-weight: 300;
+        }
+
+        h3 {
+          font-size: 26px; 
+          font-weight: 600;
+        }
+      }
+      &:hover {
+        .bread-card-overlay {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
