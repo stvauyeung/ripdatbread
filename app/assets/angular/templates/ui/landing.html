@@ -3,11 +3,11 @@
   <h2>find awesome bread,<br> rip as you please!</h2>
 </div>
 
-<div class="container">
+<div id="landing-container">
   <span ng-repeat="bread in breads" class="bread-card-container">
-    <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false">
+    <div class="bread-card-inner-container">
       <img ng-src="{{bread.imageUrl}}" class="bread-card">
-      <div class="bread-card-overlay" ng-show="showOverlay">
+      <div class="bread-card-overlay">
         <h5>{{bread.name}}</h5>
         <p>{{bread.rips}} rips | {{bread.dips}} dips</p>
         <h3>hungy?</h3>
