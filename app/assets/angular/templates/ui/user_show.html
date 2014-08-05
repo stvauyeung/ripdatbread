@@ -1,6 +1,14 @@
-<div class="container">
-  <h1>Breads by {{user.name}}</h1>
+<div class="container user-show-container">
+  <h1 class="user-content-header">Breads by {{user.name}}</h1>
   <div ng-repeat="bread in breads">
-    <img ng-src="{{bread.imageUrl}}" class="portfolio-bread-images">
+    <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="user-bread-image-holder">
+      <img ng-src="{{bread.imageUrl}}" class="portfolio-bread-images">
+      <div ng-show="showOverlay" class="user-bread-img-overlay">
+        <h1>{{bread.name}}</h1>
+        <h2>{{bread.rips}} rips | {{bread.dips}} dips</h2>
+        <p>Yumz?</p>
+      </div>
+    </div>
+    
   </div>
 </div>

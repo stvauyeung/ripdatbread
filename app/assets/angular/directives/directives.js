@@ -10,7 +10,7 @@ app
             $('#wrapper').css({
               'padding-left': '0px'
             });
-            $('#wrapper').prepend('<h1 class="sidebar-open-button">&#8594;</h1>')
+            $('#wrapper').prepend('<span class="sidebar-open-button">&#8594;</span>')
             $('.sidebar-open-button').click(function() {
               $('#sidebar-wrapper').show(200);
               $('.sidebar-open-button').hide();

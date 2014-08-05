@@ -48,5 +48,9 @@
 
 .sidebar-open-button {
   // float: left;
+  font-size: 36px;
   cursor: pointer;
+  position: fixed;
+  top: 25px;
+  z-index: 1001;
 }

@@ -85,6 +85,9 @@
 }
 
 .btn-add-comment {
+  display: block;
+  max-width: 250px;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: white;
@@ -93,7 +96,7 @@
   border-radius: 0;
   font-size: 32px;
   font-weight: 500;
-  padding: 0 150px;
+  // padding: 0 150px;
 
   &:hover {
     background-color: $primary-4;
