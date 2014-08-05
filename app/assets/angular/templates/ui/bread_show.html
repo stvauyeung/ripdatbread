@@ -16,8 +16,8 @@
   </div>
   <div class="bread-info">
     <div class="menu-toggle">
-      <span ng-click="onInfo = true" ng-style="breadInfoStyle()" id="bread-info">DIS BREAD</span>
-      <span ng-click="onInfo = false" ng-style="breadTalkStyle()">BREAD TALK</span>
+      <span ng-click="onInfo = true" ng-class="{'current-menu': onInfo == true}" id="bread-info">DIS BREAD</span>
+      <span ng-click="onInfo = false" ng-class="{'current-menu': onInfo == false}">BREAD TALK</span>
     </div>
     <div class="toggle-content">
       <div ng-show="onInfo == true">
