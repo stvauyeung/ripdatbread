@@ -25,6 +25,18 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       controller: 'StaticHomeCtrl',
       templateUrl: '<%= asset_path("templates/ui/landing.html") %>'
     })
+    .state('newUser', {
+      url: '/users/new',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: "SideNavCtrl"
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/user/new_user.html") %>'
+        }
+      }
+    })
     .state('userShow', {
       url: '/ui/user_show',
       views: {
