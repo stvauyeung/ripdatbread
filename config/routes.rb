@@ -1,6 +1,6 @@
 Bread::Application.routes.draw do
-  namespace :api do
-    
+  namespace :api, defaults: {format: :json} do
+    post '/users', to: 'users#create'
   end
   
   get 'ui(/:action)', controller: 'ui'

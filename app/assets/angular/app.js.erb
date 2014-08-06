@@ -15,7 +15,7 @@ var bread1 = {
   user: user
 }
 
-bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives']);
+bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
@@ -30,10 +30,11 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: "SideNavCtrl"
+          controller: 'SideNavCtrl'
         },
         'main@': {
-          templateUrl: '<%= asset_path("templates/user/new_user.html") %>'
+          templateUrl: '<%= asset_path("templates/user/new_user.html") %>',
+          controller: 'NewUserCtrl'
         }
       }
     })
