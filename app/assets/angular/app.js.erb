@@ -1,9 +1,58 @@
-bread = angular.module('bread', ['ui.router', 'breadControllers']);
+var user = {
+  name: 'Peanut',
+  imageUrl: '/swedish-chef.jpg',
+  breadCount: 25,
+  rips: 32,
+  dips: 18
+}
+
+var bread1 = {
+  name: 'Yummy bread',
+  rips: 3,
+  dips: 12,
+  imageUrl: '/bread4.jpg',
+  description: 'This is my favorite bread of all time.  Love this bread.',
+  user: user
+}
+
+bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
-  $stateProvider.state('landing', {
-      url: '/',
-      templateUrl: '<%= asset_path("templates/landing.html") %>'
+  $stateProvider
+    .state('landing', {
+      url: '/ui/landing',
+      controller: 'StaticHomeCtrl',
+      templateUrl: '<%= asset_path("templates/ui/landing.html") %>'
+    })
+    .state('userShow', {
+      url: '/ui/user_show',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/ui/user_nav.html") %>',
+          controller: 'UserNavCtrl'
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/ui/user_show.html") %>',
+          controller: 'UserShowCtrl'
+        }
+      }
+    })
+    .state('breadShow', {
+      url: '/ui/bread_show',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/ui/side_nav.html") %>',
+          controller: "SideNavCtrl"
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>',
+          controller: 'BreadShowCtrl'
+        }
+      }
+    })
+    .state('breadIndex', {
+      url: '/ui/bread',
+      templateUrl: '<%= asset_path("templates/ui/bread.html") %>'
     });
 }]);

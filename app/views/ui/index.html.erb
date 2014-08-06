@@ -1,0 +1,14 @@
+<div class="container">
+  <section class="ui-index">
+    <ul>
+      <% Dir.glob('app/views/ui/*.html').sort.each do |file| %>
+        <% wireframe = File.basename(file,'.html') %>
+        <% unless wireframe == 'index' || wireframe.match(/^_/) %>
+          <li>
+            <%= link_to wireframe.titleize, action: wireframe unless wireframe == 'index' %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </section>
+</div>
