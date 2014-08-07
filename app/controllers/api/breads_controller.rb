@@ -2,9 +2,7 @@ class Api::BreadsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
 
   def create
-    bread = Bread.new(bread_params)
-    bread.user = current_user.id
-    bread.save!
+    bread = current_user.breads.create(bread_params)
     render nothing: true
   end
 
