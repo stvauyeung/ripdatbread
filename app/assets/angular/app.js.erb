@@ -64,6 +64,19 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         }
       }
     })
+    .state('newBread', {
+      url: '/breads/new',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: 'SideNavCtrl'
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/bread/new_bread.html") %>',
+          controller: 'NewBreadCtrl'
+        }
+      }
+    })
     .state('breadShow', {
       url: '/ui/bread_show',
       views: {

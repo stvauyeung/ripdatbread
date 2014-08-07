@@ -19,9 +19,14 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', '$http', 'User', function($scope, $http, User) {
+  .controller('NewUserCtrl', ['$scope', 'User', function($scope, User) {
     $scope.createNewUser = function(user) {
       User.create(user);
+    };
+  }])
+  .controller('NewBreadCtrl', ['$scope', 'Bread', function($scope, Bread) {
+    $scope.createBread = function(bread) {
+      Bread.create(bread);
     };
   }])
   .controller('BreadShowCtrl', ['$scope', function($scope) {
