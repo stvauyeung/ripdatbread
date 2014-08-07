@@ -21,9 +21,22 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('landing', {
-      url: '/ui/landing',
+      url: '/',
       controller: 'StaticHomeCtrl',
-      templateUrl: '<%= asset_path("templates/ui/landing.html") %>'
+      templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>'
+    })
+    .state('newSession', {
+      url: '/login',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: 'SideNavCtrl'
+        },
+        'main@': {
+          controller: 'LoginCtrl',
+          templateUrl: '<%= asset_path("templates/static_pages/login.html") %>'
+        }
+      }
     })
     .state('newUser', {
       url: '/users/new',

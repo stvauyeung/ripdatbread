@@ -7,6 +7,18 @@ controllers
       $scope.breads.push(angular.copy(bread1));
     };
   }])
+  .controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    $scope.createSession = function(user) {
+      $http.post('/api/login', user)
+        .success(function(data, status, headers) {
+          $window.location.href = '/';
+          console.log('successful login');
+        })
+        .error(function(data, status, headers) {
+          alert('failed login');
+        })
+    };
+  }])
   .controller('NewUserCtrl', ['$scope', '$http', 'User', function($scope, $http, User) {
     $scope.createNewUser = function(user) {
       User.create(user);
@@ -27,7 +39,7 @@ controllers
     $scope.user = angular.copy(user);
   }])
   .controller('UserShowCtrl', ['$scope', function($scope) {
-    $scope.user = angular.copy(user)
+    $scope.user = angular.copy(user);
     $scope.breads = [];
     for (var i = 0; i < 24; i++) {
       $scope.breads.push(angular.copy(bread1));
