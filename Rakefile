@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Bread::Application.load_tasks
+Ripdatbread::Application.load_tasks

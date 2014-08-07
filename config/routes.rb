@@ -1,4 +1,4 @@
-Bread::Application.routes.draw do
+Ripdatbread::Application.routes.draw do
   namespace :api, defaults: {format: :json} do
     post '/users', to: 'users#create'
     post '/login', to: 'sessions#create'
