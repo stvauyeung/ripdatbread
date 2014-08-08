@@ -12,7 +12,7 @@ app.factory('User', ['$http', '$window', function($http, $window) {
         });
     },
     show: function(user_id) {
-      $http.get('/api/users/'+user_id)
+      return $http.get('/api/users/'+user_id)
         .success(function(data, status, headers) {
           return data;
         })

@@ -19,7 +19,7 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', 'User', '$http', '$window', function($scope, User, $http, $window) {
+  .controller('NewUserCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.createNewUser = function(user) {
       var fd = new FormData();
       fd.append('photo',$scope.files[0]);
@@ -39,11 +39,8 @@ controllers
   }])
   .controller('UserShowCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
     console.log(showedUser);
-    $scope.user = showedUser;
-    $scope.breads = [];
-    for (var i = 0; i < 24; i++) {
-      $scope.breads.push(angular.copy(bread1));
-    };
+    $scope.user = showedUser.data;
+    $scope.breads = $scope.user.breads;  
   }])
   .controller('NewBreadCtrl', ['$scope', 'Bread', function($scope, Bread) {
     $scope.createBread = function(bread) {
@@ -60,6 +57,7 @@ controllers
       console.log($rootScope.hideSideNav);
     }
   }])
-  .controller('UserNavCtrl', ['$scope', function($scope) {
-    $scope.user = angular.copy(user);
+  .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+    $scope.user = showedUser.data;
+    $scope.userPhoto = $scope.user.photo.photo.normal.url;
   }]);
