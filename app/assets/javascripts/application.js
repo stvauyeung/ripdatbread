@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require angular-file-upload-shim.min.js
 //= require angular
 //= require angular-ui-router
 //= require angular-ui-bootstrap-tpls

@@ -15,7 +15,7 @@ var bread1 = {
   user: user
 }
 
-bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels']);
+bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels', 'angularFileUpload']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
@@ -52,15 +52,21 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       }
     })
     .state('userShow', {
-      url: '/ui/user_show',
+      url: '/users/:id',
       views: {
         'nav@': {
-          templateUrl: '<%= asset_path("templates/ui/user_nav.html") %>',
+          templateUrl: '<%= asset_path("templates/nav_bars/user_nav.html") %>',
           controller: 'UserNavCtrl'
         },
         'main@': {
-          templateUrl: '<%= asset_path("templates/ui/user_show.html") %>',
-          controller: 'UserShowCtrl'
+          templateUrl: '<%= asset_path("templates/user/show.html") %>',
+          controller: 'UserShowCtrl',
+          resolve: {
+            showedUser: ['User', '$stateParams', function(User, $stateParams) {
+              user = User.show($stateParams.id);
+              return user;
+            }]
+          }
         }
       }
     })

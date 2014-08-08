@@ -19,9 +19,30 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', 'User', function($scope, User) {
+  .controller('NewUserCtrl', ['$scope', 'User', '$http', '$window', function($scope, User, $http, $window) {
     $scope.createNewUser = function(user) {
-      User.create(user);
+      var fd = new FormData();
+      fd.append('photo',$scope.files[0]);
+      fd.append('name', user.name);
+      fd.append('email', user.email);
+      fd.append('password', user.password);
+      fd.append('password_confirmation', user.password_confirmation);
+      $http.post('/api/users', fd,
+      {
+        transformRequest:angular.identity,
+        headers:{'Content-Type':undefined}
+      })
+      .success(function(d) {
+        $window.location.href = '/';
+      })
+    };
+  }])
+  .controller('UserShowCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+    console.log(showedUser);
+    $scope.user = showedUser;
+    $scope.breads = [];
+    for (var i = 0; i < 24; i++) {
+      $scope.breads.push(angular.copy(bread1));
     };
   }])
   .controller('NewBreadCtrl', ['$scope', 'Bread', function($scope, Bread) {
@@ -34,7 +55,6 @@ controllers
     $scope.onInfo = true;
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-    console.log($rootScope.hideSideNav);
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
@@ -42,11 +62,4 @@ controllers
   }])
   .controller('UserNavCtrl', ['$scope', function($scope) {
     $scope.user = angular.copy(user);
-  }])
-  .controller('UserShowCtrl', ['$scope', function($scope) {
-    $scope.user = angular.copy(user);
-    $scope.breads = [];
-    for (var i = 0; i < 24; i++) {
-      $scope.breads.push(angular.copy(bread1));
-    };
   }]);

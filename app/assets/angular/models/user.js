@@ -9,7 +9,16 @@ app.factory('User', ['$http', '$window', function($http, $window) {
         })
         .error(function(data, status, headers) {
           alert('Error with creation');
+        });
+    },
+    show: function(user_id) {
+      $http.get('/api/users/'+user_id)
+        .success(function(data, status, headers) {
+          return data;
         })
+        .error(function(data, status, headers) {
+          alert('error getting user');
+        });
     }
   }
 }]);
