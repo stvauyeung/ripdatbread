@@ -6,6 +6,11 @@ class Api::BreadsController < ApplicationController
     render nothing: true
   end
 
+  def show
+    @bread = Bread.find(params[:id])
+    render json: @bread, root: false
+  end
+
   private
 
   def bread_params

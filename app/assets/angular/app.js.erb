@@ -90,14 +90,14 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       }
     })
     .state('breadShow', {
-      url: '/ui/bread_show',
+      url: '/breads/:id',
       views: {
         'nav@': {
-          templateUrl: '<%= asset_path("templates/ui/side_nav.html") %>',
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
           controller: "SideNavCtrl"
         },
         'main@': {
-          templateUrl: '<%= asset_path("templates/ui/bread_show.html") %>',
+          templateUrl: '<%= asset_path("templates/bread/show.html") %>',
           controller: 'BreadShowCtrl'
         }
       }
