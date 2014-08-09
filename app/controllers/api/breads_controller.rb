@@ -9,6 +9,6 @@ class Api::BreadsController < ApplicationController
   private
 
   def bread_params
-    params.permit(:name, :description)
+    params.permit(:name, :description, :photo)
   end
 end

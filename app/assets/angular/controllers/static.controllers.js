@@ -42,9 +42,20 @@ controllers
     $scope.user = showedUser.data;
     $scope.breads = $scope.user.breads;  
   }])
-  .controller('NewBreadCtrl', ['$scope', 'Bread', function($scope, Bread) {
+  .controller('NewBreadCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.createBread = function(bread) {
-      Bread.create(bread);
+      var fd = new FormData();
+      fd.append('photo', $scope.files[0]);
+      fd.append('name', bread.name);
+      fd.append('description', bread.description)
+      $http.post('/api/breads/create', fd, 
+      {
+        transformRequest:angular.identity,
+        headers:{'Content-Type':undefined}
+      })
+      .success(function(d) {
+        $window.location.href = '/';
+      });
     };
   }])
   .controller('BreadShowCtrl', ['$scope', function($scope) {
