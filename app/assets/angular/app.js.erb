@@ -58,7 +58,7 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
           templateUrl: '<%= asset_path("templates/nav_bars/user_nav.html") %>',
           controller: 'UserNavCtrl',
           resolve: {
-            showedUser: ['User', '$stateParams', '$http', function(User, $stateParams, $http) {
+            showedUser: ['User', '$stateParams', function(User, $stateParams) {
               user = User.show($stateParams.id);
               return user;
             }]
@@ -68,7 +68,7 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
           templateUrl: '<%= asset_path("templates/user/show.html") %>',
           controller: 'UserShowCtrl',
           resolve: {
-            showedUser: ['User', '$stateParams', '$http', function(User, $stateParams, $http) {
+            showedUser: ['User', '$stateParams', function(User, $stateParams) {
               user = User.show($stateParams.id);
               return user;
             }]
@@ -98,7 +98,13 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/show.html") %>',
-          controller: 'BreadShowCtrl'
+          controller: 'BreadShowCtrl',
+          resolve: {
+            showedBread: ['Bread', '$stateParams', function(Bread, $stateParams) {
+              bread = Bread.show($stateParams.id);
+              return bread;
+            }]
+          }
         }
       }
     })

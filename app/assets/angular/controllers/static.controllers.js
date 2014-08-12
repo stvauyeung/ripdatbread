@@ -58,8 +58,8 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', function($scope) {
-    $scope.bread = angular.copy(bread1);
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', function($scope, showedBread) {
+    $scope.bread = showedBread.data;
     $scope.onInfo = true;
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {

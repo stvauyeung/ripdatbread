@@ -4,7 +4,7 @@
     <span id="next">NEXT SLICE &#9654;</span>
   </div>
   <div class="bread-image-holder" ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay =false">
-    <img ng-src="{{bread.imageUrl}}">
+    <img ng-src="{{bread.photo.url}}">
     <div ng-show="showOverlay" class="bread-img-overlay">
       <h1>{{bread.name}}</h1>
       <h2>{{bread.rips}} rips | {{bread.dips}} dips</h2>
@@ -21,7 +21,7 @@
     </div>
     <div class="toggle-content">
       <div ng-show="onInfo == true">
-        <p>Added by: <a href="#">{{bread.user.name}}</a></p>
+        <p>Added by: <a href="#">{{bread.username}}</a></p>
         <p>"{{bread.description}}"</p>
       </div>
       <div ng-show="onInfo == false">
