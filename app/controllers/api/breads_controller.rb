@@ -8,8 +8,9 @@ class Api::BreadsController < ApplicationController
 
   def show
     bread = Bread.find(params[:id])
+    comments = bread.comments.as_json.map!{|c| c.merge(username: User.find(c["user_id"]).name)}
     owner = User.find(bread.user_id)
-    bread_owner = bread.as_json.merge(username: owner.name, rips: bread.rip_count, dips: bread.dip_count)
+    bread_owner = bread.as_json.merge(username: owner.name, rips: bread.rip_count, dips: bread.dip_count, comments: comments)
     render json: bread_owner, root: false
   end
 

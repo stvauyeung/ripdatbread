@@ -58,7 +58,7 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', function($scope, showedBread, Vote, Comment) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', function($scope, showedBread, Vote, Comment, $window) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
     $scope.createVote = function(value) {
@@ -69,6 +69,7 @@ controllers
     $scope.createComment = function(comment_text) {
       comment = {text: comment_text, bread_id: $scope.bread.id}
       Comment.create(comment);
+      $('.bread-comments').load($window.location);
     };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {

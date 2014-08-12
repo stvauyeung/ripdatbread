@@ -140,3 +140,12 @@ textarea {
 .bread-info {
   margin: 30px 0;
 }
+
+.bread-comments {
+  padding-top: 10px;
+  p {
+    background-color: $primary-2;
+    margin-bottom: 0;
+    padding-left: 5px;
+  }
+}
