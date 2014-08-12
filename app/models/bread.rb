@@ -3,6 +3,7 @@ class Bread < ActiveRecord::Base
   validates_presence_of :description
   belongs_to :user
   has_many :votes
+  has_many :comments
   mount_uploader :photo, BreadUploader
 
   def rip_count

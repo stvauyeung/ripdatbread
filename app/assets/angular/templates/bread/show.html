@@ -25,8 +25,8 @@
         <p>"{{bread.description}}"</p>
       </div>
       <div ng-show="onInfo == false">
-        <textarea rows="3" placeholder="Got sm to say abt dis bread?"></textarea>
-        <div class="btn btn-add-comment">SAY IT</div>
+        <textarea rows="3" placeholder="Got sm to say abt dis bread?" ng-model="comment.text"></textarea>
+        <div class="btn btn-add-comment" ng-click="createComment(comment.text)">SAY IT</div>
       </div>
     </div>
   </div>

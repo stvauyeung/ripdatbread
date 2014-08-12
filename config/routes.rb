@@ -4,6 +4,7 @@ Ripdatbread::Application.routes.draw do
     post '/login', to: 'sessions#create'
     post '/breads/create', to: 'breads#create'
     post '/votes', to: 'votes#create'
+    post '/comments', to: 'comments#create'
     get '/users/:id', to: 'users#show'
     get '/breads/:id', to: 'breads#show'
   end
