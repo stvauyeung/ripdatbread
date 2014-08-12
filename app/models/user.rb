@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => { case_sensitive: false }, format: { with: /\A[A-Za-z0-9_]+\z/, message: "only letters, numbers or underscores"}, length: { maximum: 25 }
   validates :email, :presence => true, :uniqueness => true
   has_many :breads
+  has_many :votes
   mount_uploader :photo, ProfileUploader
 
   private
