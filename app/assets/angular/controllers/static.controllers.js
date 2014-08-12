@@ -58,9 +58,14 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', function($scope, showedBread) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', function($scope, showedBread, Vote) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
+    $scope.createVote = function(value) {
+      vote = {bread_id: $scope.bread.id, value: value};
+      Vote.create(vote);
+      // how to update vote counter? animation on click?
+    };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.hideNav = function() {

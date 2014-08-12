@@ -9,7 +9,7 @@ class Api::BreadsController < ApplicationController
   def show
     bread = Bread.find(params[:id])
     owner = User.find(bread.user_id)
-    bread_owner = bread.as_json.merge(username: owner.name)
+    bread_owner = bread.as_json.merge(username: owner.name, rips: bread.rip_count, dips: bread.dip_count)
     render json: bread_owner, root: false
   end
 
