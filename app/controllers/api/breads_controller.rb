@@ -13,6 +13,12 @@ class Api::BreadsController < ApplicationController
     render json: bread_owner, root: false
   end
 
+  def next_bread
+    breads = Bread.all.map(&:id)
+    count = breads.count
+    rand = Number.random
+  end
+
   private
 
   def bread_params
