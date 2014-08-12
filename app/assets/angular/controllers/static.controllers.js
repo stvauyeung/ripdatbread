@@ -7,24 +7,68 @@ controllers
       $scope.breads.push(angular.copy(bread1));
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', function($scope) {
-    $scope.bread = angular.copy(bread1);
+  .controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    $scope.createSession = function(user) {
+      $http.post('/api/login', user)
+        .success(function(data, status, headers) {
+          $window.location.href = '/';
+          console.log('successful login');
+        })
+        .error(function(data, status, headers) {
+          alert('failed login');
+        })
+    };
+  }])
+  .controller('NewUserCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    $scope.createNewUser = function(user) {
+      var fd = new FormData();
+      fd.append('photo',$scope.files[0]);
+      fd.append('name', user.name);
+      fd.append('email', user.email);
+      fd.append('password', user.password);
+      fd.append('password_confirmation', user.password_confirmation);
+      $http.post('/api/users', fd,
+      {
+        transformRequest:angular.identity,
+        headers:{'Content-Type':undefined}
+      })
+      .success(function(d) {
+        $window.location.href = '/';
+      })
+    };
+  }])
+  .controller('UserShowCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+    console.log(showedUser);
+    $scope.user = showedUser.data;
+    $scope.breads = $scope.user.breads;  
+  }])
+  .controller('NewBreadCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    $scope.createBread = function(bread) {
+      var fd = new FormData();
+      fd.append('photo', $scope.files[0]);
+      fd.append('name', bread.name);
+      fd.append('description', bread.description)
+      $http.post('/api/breads/create', fd, 
+      {
+        transformRequest:angular.identity,
+        headers:{'Content-Type':undefined}
+      })
+      .success(function(d) {
+        $window.location.href = '/';
+      });
+    };
+  }])
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', function($scope, showedBread) {
+    $scope.bread = showedBread.data;
     $scope.onInfo = true;
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-    console.log($rootScope.hideSideNav);
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
     }
   }])
-  .controller('UserNavCtrl', ['$scope', function($scope) {
-    $scope.user = angular.copy(user);
-  }])
-  .controller('UserShowCtrl', ['$scope', function($scope) {
-    $scope.user = angular.copy(user)
-    $scope.breads = [];
-    for (var i = 0; i < 24; i++) {
-      $scope.breads.push(angular.copy(bread1));
-    };
+  .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+    $scope.user = showedUser.data;
+    $scope.userPhoto = $scope.user.photo.photo.normal.url;
   }]);
