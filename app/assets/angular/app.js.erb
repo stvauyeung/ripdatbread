@@ -15,7 +15,7 @@ var bread1 = {
   user: user
 }
 
-bread = angular.module('bread', ['ui.router', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels', 'angularFileUpload']);
+bread = angular.module('bread', ['ui.router', 'ngCookies', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels', 'angularFileUpload']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);

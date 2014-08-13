@@ -58,13 +58,22 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', function($scope, showedBread, Vote) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', function($scope, showedBread, Vote, Comment, $window) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
       Vote.create(vote);
       // how to update vote counter? animation on click?
+    };
+
+    // Need to decide on way to get current user to add to name to comment object
+    $scope.createComment = function(comment_text) {
+      comment = {text: comment_text, bread_id: $scope.bread.id}
+      Comment.create(comment);
+      // comment['username'] = currentUser.name;
+      $scope.bread.comments.push(comment);
+      $scope.comment = {};
     };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {

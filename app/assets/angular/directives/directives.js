@@ -34,4 +34,41 @@ app
         })
       }
     }
-  }]);
+  }])
+  .directive('successBtn', ['$rootScope', '$timeout', function($rootScope, $timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, element, attrs) {
+
+        $rootScope.$on('req:success', function() {
+
+          // Change the button to show success
+          element.css({
+            'background-color': '#00CC45',
+            'border-color': '#19FF67',
+            'font-size': '24px'
+          });
+
+          element.text('Successful post.');
+
+          // Add a timeout to make sure button doesn't stay in success mode
+
+          $timeout(function() {
+            // Revert button's css back
+
+            element.css({
+              'background-color': '#FF0700',
+              'border-color': '#FF7470',
+              'font-size': '32px'
+            });
+            
+            // Revert text
+            element.text('SAY IT');
+
+          }, 3000)
+
+        });
+
+      }
+    }
+  }])

@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require angular-file-upload-shim.min.js
 //= require angular
+//= require angular-cookies
 //= require angular-ui-router
 //= require angular-ui-bootstrap-tpls
 //= require_tree ../angular

@@ -1,6 +1,11 @@
 class Api::UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   
+  def current_user
+    @user = User.find_by_token(params[:token])
+    render json: @user
+  end
+
   def create
     user = User.create(user_params)
     render nothing: true
