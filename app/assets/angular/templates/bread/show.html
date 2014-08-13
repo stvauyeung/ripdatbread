@@ -26,7 +26,7 @@
       </div>
       <div ng-show="onInfo == false">
         <textarea rows="3" placeholder="Got sm to say abt dis bread?" ng-model="comment.text"></textarea>
-        <div class="btn btn-add-comment" ng-click="createComment(comment.text)">SAY IT</div>
+        <div class="btn btn-add-comment" success-btn ng-click="createComment(comment.text)">SAY IT</div>
         <div class="bread-comments" ng-repeat="comment in bread.comments">
           <p>{{comment.text}} --{{comment.username}}</p>
         </div>

@@ -6,6 +6,7 @@ Ripdatbread::Application.routes.draw do
     post '/votes', to: 'votes#create'
     post '/comments', to: 'comments#create'
     get '/users/:id', to: 'users#show'
+    get '/current_user/:token', to: 'users#current_user'
     get '/breads/:id', to: 'breads#show'
   end
   
