@@ -54,7 +54,8 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
-        $window.location.href = '/';
+        console.log(d);
+        $window.location.href = '/breads/'+d.id;
       });
     };
   }])

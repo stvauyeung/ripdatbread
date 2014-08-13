@@ -3,7 +3,7 @@ class Api::BreadsController < ApplicationController
 
   def create
     bread = current_user.breads.create(bread_params)
-    render nothing: true
+    render json: bread, root: false
   end
 
   def show
