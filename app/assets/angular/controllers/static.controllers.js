@@ -19,7 +19,7 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookieStore', function($scope, $http, $window, $cookieStore) {
     $scope.createNewUser = function(user) {
       var fd = new FormData();
       fd.append('photo',$scope.files[0]);
@@ -33,6 +33,8 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
+        currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
+        $cookieStore.put('currentUser', currentUser);
         $window.location.href = '/';
       })
     };
@@ -59,9 +61,11 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', function($scope, showedBread, Vote, Comment, $window) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$cookieStore', function($scope, showedBread, Vote, Comment, $window, $cookieStore) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
+    $scope.currentUser = $cookieStore.get('currentUser');
+    console.log($scope.currentUser);
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
       Vote.create(vote);
@@ -72,7 +76,6 @@ controllers
     $scope.createComment = function(comment_text) {
       comment = {text: comment_text, bread_id: $scope.bread.id}
       Comment.create(comment);
-      // comment['username'] = currentUser.name;
       $scope.bread.comments.push(comment);
       $scope.comment = {};
     };
