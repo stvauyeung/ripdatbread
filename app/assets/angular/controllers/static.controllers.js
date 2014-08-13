@@ -58,7 +58,7 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$http', '$cookies', function($scope, showedBread, Vote, Comment, $window, $http, $cookies) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', function($scope, showedBread, Vote, Comment, $window) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
     $scope.createVote = function(value) {
