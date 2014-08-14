@@ -79,6 +79,7 @@ controllers
       comment = {text: comment_text, bread_id: $scope.bread.id}
       Comment.create(comment);
       comment.username = $cookies.current_user;
+      comment.user_id = $cookies.user_id;
       $scope.bread.comments.unshift(comment);
       $scope.comment = {};
     };

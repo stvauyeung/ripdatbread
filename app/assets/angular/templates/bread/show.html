@@ -21,14 +21,14 @@
     </div>
     <div class="toggle-content">
       <div ng-show="onInfo == true">
-        <p>Added by: <a href="#">{{bread.username}}</a></p>
+        <p>Added by: <a ng-href="/users/{{bread.user_id}}">{{bread.username}}</a></p>
         <p>"{{bread.description}}"</p>
       </div>
       <div ng-show="onInfo == false">
         <textarea rows="3" placeholder="Got sm to say abt dis bread?" ng-model="comment.text"></textarea>
         <div class="btn btn-add-comment" success-btn ng-click="createComment(comment.text)">SAY IT</div>
         <div class="bread-comments" ng-repeat="comment in bread.comments">
-          <p>{{comment.text}} --{{comment.username}}</p>
+          <p>{{comment.text}} --<a ng-href="/users/{{comment.user_id}}">{{comment.username}}</a></p>
         </div>
       </div>
     </div>
