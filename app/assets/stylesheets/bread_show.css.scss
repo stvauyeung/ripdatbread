@@ -96,6 +96,8 @@
   border-radius: 0;
   font-size: 32px;
   font-weight: 500;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
   // padding: 0 150px;
 
   &:hover {

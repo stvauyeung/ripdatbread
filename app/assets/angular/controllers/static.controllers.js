@@ -19,7 +19,7 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookieStore', function($scope, $http, $window, $cookieStore) {
+  .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
     $scope.createNewUser = function(user) {
       var fd = new FormData();
       fd.append('photo',$scope.files[0]);
@@ -33,8 +33,7 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
-        currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
-        $cookieStore.put('currentUser', currentUser);
+        // currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
         $window.location.href = '/';
       })
     };
@@ -61,14 +60,14 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$cookieStore', function($scope, showedBread, Vote, Comment, $window, $cookieStore) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$cookies', function($scope, showedBread, Vote, Comment, $window, $cookies) {
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
-    $scope.currentUser = $cookieStore.get('currentUser');
-    console.log($scope.currentUser);
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
       Vote.create(vote);
+      // if value is rip then
+      $scope.bread.rips += 1;
       // how to update vote counter? animation on click?
     };
 
@@ -76,7 +75,8 @@ controllers
     $scope.createComment = function(comment_text) {
       comment = {text: comment_text, bread_id: $scope.bread.id}
       Comment.create(comment);
-      $scope.bread.comments.push(comment);
+      comment.username = $cookies.current_user;
+      $scope.bread.comments.unshift(comment);
       $scope.comment = {};
     };
   }])

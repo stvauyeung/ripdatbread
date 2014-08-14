@@ -6,6 +6,7 @@ class Api::SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       cookies.permanent[:user] = user.token
+      cookies.permanent[:current_user] = user.name
       render nothing: true
     else
       render nothing: true

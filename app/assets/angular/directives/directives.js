@@ -12,7 +12,7 @@ app
             });
             $('#wrapper').prepend('<span class="sidebar-open-button">&#8594;</span>')
             $('.sidebar-open-button').click(function() {
-              $('#sidebar-wrapper').show(200);
+              $('#sidebar-wrapper').show(800);
               $('.sidebar-open-button').hide();
               $('#wrapper').css({
                 'padding-left': '250px'
@@ -49,7 +49,7 @@ app
             'font-size': '24px'
           });
 
-          element.text('Successful post.');
+          element.html('Successful post. <i class="ion-checkmark-circled"></i>');
 
           // Add a timeout to make sure button doesn't stay in success mode
 
