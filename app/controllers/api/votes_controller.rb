@@ -2,12 +2,13 @@ class Api::VotesController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: :create
   
   def create
-    if current_user.votes.create(vote_params)
+    vote = current_user.votes.new(vote_params)
+    if vote.save
       flash[:success] = "vote created"
     else
       flash[:error] = "vote not created"
     end
-    render nothing: true
+    render json: vote, root: false
   end
 
   private
