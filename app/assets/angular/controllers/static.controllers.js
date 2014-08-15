@@ -84,11 +84,18 @@ controllers
       $scope.comment = {};
     };
   }])
-  .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+  .controller('SideNavCtrl', ['$scope', '$rootScope', '$cookies', function($scope, $rootScope, $cookies) {
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
-    }
+    };
+    $scope.loggedIn = function() {
+      if ($cookies.user) {
+        return true;
+      } else{
+        return false;
+      };
+    };
   }])
   .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
     $scope.user = showedUser.data;

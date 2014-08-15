@@ -13,4 +13,11 @@ class Api::SessionsController < ApplicationController
       render nothing: true
     end
   end
+
+  def destroy
+    cookies.delete :user
+    cookies.delete :current_user
+    cookies.delete :user_id
+    redirect_to home_path
+  end
 end
