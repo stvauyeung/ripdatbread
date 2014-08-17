@@ -1,1 +1,1 @@
-angular.module('breadModels', ['userModel', 'breadModel', 'voteModel', 'commentModel']);
+angular.module('ripDatBreadModels', ['userModel', 'breadModel', 'voteModel', 'commentModel']);

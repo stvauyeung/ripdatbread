@@ -1,22 +1,25 @@
 controllers = angular.module('staticCtrls', []);
 
 controllers
+  // .controller('ApplicationCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+  //   $rootScope.currentUser = null;
+  //   $scope.setCurrentUser = function(user) {
+  //     $rootScope.currentUser = user;
+  //   };
+  // }])
   .controller('StaticHomeCtrl', ['$scope', function($scope) {
     $scope.breads = [];
     for (var i = 0; i < 30; i++) {
       $scope.breads.push(angular.copy(bread1));
     };
   }])
-  .controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
-    $scope.createSession = function(user) {
-      $http.post('/api/login', user)
-        .success(function(data, status, headers) {
-          $window.location.href = '/';
-          console.log('successful login');
-        })
-        .error(function(data, status, headers) {
-          alert('failed login');
-        })
+  .controller('LoginCtrl', ['$scope', '$window', 'AuthService', function($scope, $window, AuthService) {
+    $scope.createSession = function(credentials) {
+      AuthService.login(credentials)
+        .success(function(data) {
+          // $scope.setCurrentUser(data)
+          // $window.location.href = '/';
+        });
     };
   }])
   .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
@@ -33,7 +36,6 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
-        // currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
         $window.location.href = '/';
       })
     };
@@ -84,17 +86,21 @@ controllers
       $scope.comment = {};
     };
   }])
-  .controller('SideNavCtrl', ['$scope', '$rootScope', '$cookies', function($scope, $rootScope, $cookies) {
+  .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', '$window', function($scope, $rootScope, AuthService, $window) {
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
     };
+    $scope.clearSession = function() {
+      AuthService.logout();
+      // $window.location.href = '/';
+    };
     $scope.loggedIn = function() {
-      if ($cookies.user) {
-        return true;
-      } else{
-        return false;
-      };
+      if (AuthService.loggedIn()) {
+        return true
+      } else { 
+        return false 
+      }
     };
   }])
   .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {

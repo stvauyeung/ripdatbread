@@ -7,7 +7,7 @@
 </div>
 <div ng-show="loggedIn() == true">
   <div class="sidebar-small-links">
-    <p><a href="/api/logout">logout</a></p>
+    <p><a ng-click="clearSession()">logout</a></p>
   </div>  
 </div>
 <div ng-show="loggedIn() == false">
