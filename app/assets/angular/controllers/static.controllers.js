@@ -19,7 +19,7 @@ controllers
         })
     };
   }])
-  .controller('NewUserCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
     $scope.createNewUser = function(user) {
       var fd = new FormData();
       fd.append('photo',$scope.files[0]);
@@ -33,6 +33,7 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
+        // currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
         $window.location.href = '/';
       })
     };
@@ -54,33 +55,47 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
-        $window.location.href = '/';
+        console.log(d);
+        $window.location.href = '/breads/'+d.id;
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', function($scope, showedBread, Vote, Comment, $window) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$cookies', function($scope, showedBread, Vote, Comment, $window, $cookies) {
+    
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
+    
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
       Vote.create(vote);
-      // how to update vote counter? animation on click?
+      if (value == 'rip') {
+        $scope.bread.rips += 1;
+      } else if (value == 'dip') {
+        $scope.bread.dips += 1;
+      };
     };
 
-    // Need to decide on way to get current user to add to name to comment object
     $scope.createComment = function(comment_text) {
       comment = {text: comment_text, bread_id: $scope.bread.id}
       Comment.create(comment);
-      // comment['username'] = currentUser.name;
-      $scope.bread.comments.push(comment);
+      comment.username = $cookies.current_user;
+      comment.user_id = $cookies.user_id;
+      $scope.bread.comments.unshift(comment);
       $scope.comment = {};
     };
   }])
-  .controller('SideNavCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+  .controller('SideNavCtrl', ['$scope', '$rootScope', '$cookies', function($scope, $rootScope, $cookies) {
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
-    }
+    };
+    $scope.loggedIn = function() {
+      if ($cookies.user) {
+        return true;
+      } else{
+        return false;
+      };
+    };
   }])
   .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
     $scope.user = showedUser.data;

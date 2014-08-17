@@ -2,6 +2,7 @@ Ripdatbread::Application.routes.draw do
   namespace :api, defaults: {format: :json} do
     post '/users', to: 'users#create'
     post '/login', to: 'sessions#create'
+    get '/logout', to: 'sessions#destroy'
     post '/breads/create', to: 'breads#create'
     post '/votes', to: 'votes#create'
     post '/comments', to: 'comments#create'

@@ -12,7 +12,7 @@ app
             });
             $('#wrapper').prepend('<span class="sidebar-open-button">&#8594;</span>')
             $('.sidebar-open-button').click(function() {
-              $('#sidebar-wrapper').show(200);
+              $('#sidebar-wrapper').show(800);
               $('.sidebar-open-button').hide();
               $('#wrapper').css({
                 'padding-left': '250px'
@@ -49,7 +49,7 @@ app
             'font-size': '24px'
           });
 
-          element.text('Successful post.');
+          element.html('SAID <i class="ion-checkmark-circled"></i>');
 
           // Add a timeout to make sure button doesn't stay in success mode
 
@@ -59,7 +59,7 @@ app
             element.css({
               'background-color': '#FF0700',
               'border-color': '#FF7470',
-              'font-size': '32px'
+              'font-size': '24px'
             });
             
             // Revert text
@@ -69,6 +69,38 @@ app
 
         });
 
+      }
+    }
+  }])
+  .directive('ripBtn', ['$rootScope', '$timeout', function($rootScope, $timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, elm, attr) {
+        $rootScope.$on('rip:success', function() {
+          elm.css({
+            'background-color': 'transparent',
+            'border-color': '#D90600',
+            'color': '#D90600'
+          });
+          elm.attr('disabled', true);
+          elm.text("RIP'D!")
+        });
+      }
+    }
+  }])
+  .directive('dipBtn', ['$rootScope', '$timeout', function($rootScope, $timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, elm, attr) {
+        $rootScope.$on('dip:success', function() {
+          elm.css({
+            'background-color': 'transparent',
+            'border-color': '#D96800',
+            'color': '#D96800'
+          });
+          elm.attr('disabled', true);
+          elm.text("DIP'D!")
+        });
       }
     }
   }])
