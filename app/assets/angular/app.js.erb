@@ -22,8 +22,8 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
   $stateProvider
     .state('landing', {
       url: '/',
-      controller: 'StaticHomeCtrl',
-      templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>'
+      templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>',
+      controller: 'StaticHomeCtrl'
     })
     .state('newSession', {
       url: '/login',

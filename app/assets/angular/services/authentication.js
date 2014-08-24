@@ -1,27 +1,24 @@
 app = angular.module('authService', []);
 
-app.factory('AuthService', ['$http', 'Session', function($http, Session) {
+app.factory('AuthService', ['$http', function($http) {
   var authService = {}
 
   authService.login = function(credentials) {
-    return $http
-      .post('/api/login', credentials)
+    return $http.post('/api/login', credentials)
       .success(function(data, status, headers) {
-        Session.create(data.id, data.name, data.photo.photo.normal.url)
-        return data;
+        console.log('successful login');
       })
+      .error(function(data, status, headers) {
+        console.log('failed login');
+      });
   };
 
   authService.logout = function() {
     return $http
       .get('/api/logout')
       .success(function(d) {
-        Session.destroy();
+        console.log('successful logout')
       })
-  };
-
-  authService.loggedIn = function() {
-    return !!Session.id;
   };
 
   return authService;

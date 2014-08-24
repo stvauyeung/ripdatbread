@@ -1,1 +1,1 @@
-angular.module('breadServices', ['authService', 'sessionsService']);
+angular.module('breadServices', ['authService']);

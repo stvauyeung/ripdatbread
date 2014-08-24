@@ -1,24 +1,19 @@
 controllers = angular.module('staticCtrls', []);
 
 controllers
-  // .controller('ApplicationCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-  //   $rootScope.currentUser = null;
-  //   $scope.setCurrentUser = function(user) {
-  //     $rootScope.currentUser = user;
-  //   };
-  // }])
   .controller('StaticHomeCtrl', ['$scope', function($scope) {
     $scope.breads = [];
     for (var i = 0; i < 30; i++) {
       $scope.breads.push(angular.copy(bread1));
     };
   }])
-  .controller('LoginCtrl', ['$scope', '$window', 'AuthService', function($scope, $window, AuthService) {
+  .controller('LoginCtrl', ['$scope', 'AuthService', '$window', function($scope, AuthService, $window) {
     $scope.createSession = function(credentials) {
       AuthService.login(credentials)
         .success(function(data) {
-          // $scope.setCurrentUser(data)
-          // $window.location.href = '/';
+          $window.location.href = '/';
+          // $scope.setCurrentUser(data);
+          // $state.go('landing', {}, {reload:true});
         });
     };
   }])
@@ -87,21 +82,24 @@ controllers
     };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', '$window', function($scope, $rootScope, AuthService, $window) {
+    $scope.$watch("currentUser", function() {
+      $scope.loggedIn = function() {
+        if (typeof $scope.currentUser != undefined) {
+          return true
+        } else { 
+          return false 
+        }
+      };
+    });
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
     };
     $scope.clearSession = function() {
       AuthService.logout();
-      // $window.location.href = '/';
     };
-    $scope.loggedIn = function() {
-      if (AuthService.loggedIn()) {
-        return true
-      } else { 
-        return false 
-      }
-    };
+    
+    // $scope.$evalAsync($scope.init());
   }])
   .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
     $scope.user = showedUser.data;
