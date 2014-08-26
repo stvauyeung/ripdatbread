@@ -9,12 +9,7 @@ controllers
   }])
   .controller('LoginCtrl', ['$scope', 'AuthService', '$window', function($scope, AuthService, $window) {
     $scope.createSession = function(credentials) {
-      AuthService.login(credentials)
-        .success(function(data) {
-          $window.location.href = '/';
-          // $scope.setCurrentUser(data);
-          // $state.go('landing', {}, {reload:true});
-        });
+      AuthService.login(credentials);
     };
   }])
   .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
