@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
 
   def current_user
-    @current_user ||= User.find_by_token(cookies[:user]) if cookies[:user] != ''
+    @current_user ||= User.find_by_token(JSON.parse(cookies[:user])[:token]) if cookies[:user] != ''
   end
 
   def logged_in?
