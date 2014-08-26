@@ -5,8 +5,9 @@ class Api::SessionsController < ApplicationController
     params.permit(:email, :password)
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      cookies.permanent[:user] = user.token
-      render nothing: true
+      cookie_data = user.to_json(only: [:id, :name, :token])
+      cookies.permanent[:user] = cookie_data
+      render json: cookie_data
     else
       render nothing: true
     end
