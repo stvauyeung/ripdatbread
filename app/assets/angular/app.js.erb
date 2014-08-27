@@ -102,7 +102,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: "SideNavCtrl"
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/show.html") %>',
