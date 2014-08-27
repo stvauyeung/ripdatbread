@@ -7,7 +7,7 @@ app.factory('AuthService', ['$http', '$window', '$cookies', function($http, $win
       return $http.post('/api/login', credentials)
         .success(function(data, status, headers) {
           console.log(data);
-          $window.location.href = 'users/' + data.id
+          $window.location.href = 'users/' + data
         })
         .error(function(data, status, headers) {
           console.log('failed login');

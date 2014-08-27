@@ -31,7 +31,6 @@ controllers
     };
   }])
   .controller('UserShowCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
-    console.log(showedUser);
     $scope.user = showedUser.data;
     $scope.breads = $scope.user.breads;  
   }])
@@ -76,16 +75,15 @@ controllers
       $scope.comment = {};
     };
   }])
-  .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', '$window', function($scope, $rootScope, AuthService, $window) {
-    $scope.$watch("currentUser", function() {
-      $scope.loggedIn = function() {
-        if (typeof $scope.currentUser != undefined) {
-          return true
-        } else { 
-          return false 
-        }
-      };
-    });
+  .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
+    $scope.currentUser = currentUser;
+    $scope.loggedIn = function() {
+      if (typeof $scope.currentUser === undefined) {
+        return false
+      } else { 
+        return true 
+      }
+    };
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
@@ -96,7 +94,8 @@ controllers
     
     // $scope.$evalAsync($scope.init());
   }])
-  .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+  .controller('UserNavCtrl', ['$scope', 'showedUser', 'currentUser', function($scope, showedUser, currentUser) {
+    $scope.currentUser = currentUser;
     $scope.user = showedUser.data;
     $scope.userPhoto = $scope.user.photo.photo.normal.url;
   }]);

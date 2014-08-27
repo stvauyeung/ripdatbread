@@ -61,6 +61,9 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
             showedUser: ['User', '$stateParams', function(User, $stateParams) {
               user = User.show($stateParams.id);
               return user;
+            }],
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
             }]
           }
         },
@@ -81,7 +84,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: 'SideNavCtrl'
+          controller: 'SideNavCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/new_bread.html") %>',
