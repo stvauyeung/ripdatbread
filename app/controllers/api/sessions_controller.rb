@@ -5,10 +5,9 @@ class Api::SessionsController < ApplicationController
     params.permit(:email, :password)
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      cookies.permanent[:user] = user.token
-      cookies[:current_user] = user.name
-      cookies[:user_id] = user.id
-      render nothing: true
+      # cookie_data = JSON.parse(user.to_json(only: [:id, :name, :photo, :token]))
+      cookies.permanent[:user] = user.auth_token
+      render json: user.id
     else
       render nothing: true
     end
@@ -16,8 +15,6 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     cookies.delete :user
-    cookies.delete :current_user
-    cookies.delete :user_id
     redirect_to home_path
   end
 end

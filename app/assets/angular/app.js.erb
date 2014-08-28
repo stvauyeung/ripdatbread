@@ -15,22 +15,27 @@ var bread1 = {
   user: user
 }
 
-bread = angular.module('bread', ['ui.router', 'ngCookies', 'breadControllers', 'ui.bootstrap', 'Directives', 'breadModels', 'angularFileUpload']);
+bread = angular.module('bread', ['ui.router', 'ngCookies', 'breadControllers', 'ui.bootstrap', 'Directives', 'ripDatBreadModels', 'angularFileUpload', 'breadServices']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('landing', {
       url: '/',
-      controller: 'StaticHomeCtrl',
-      templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>'
+      templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>',
+      controller: 'StaticHomeCtrl'
     })
     .state('newSession', {
       url: '/login',
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: 'SideNavCtrl'
+          controller: 'SideNavCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           controller: 'LoginCtrl',
@@ -61,6 +66,9 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
             showedUser: ['User', '$stateParams', function(User, $stateParams) {
               user = User.show($stateParams.id);
               return user;
+            }],
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
             }]
           }
         },
@@ -81,7 +89,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: 'SideNavCtrl'
+          controller: 'SideNavCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/new_bread.html") %>',
@@ -94,7 +107,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: "SideNavCtrl"
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/show.html") %>',

@@ -7,16 +7,9 @@ controllers
       $scope.breads.push(angular.copy(bread1));
     };
   }])
-  .controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
-    $scope.createSession = function(user) {
-      $http.post('/api/login', user)
-        .success(function(data, status, headers) {
-          $window.location.href = '/';
-          console.log('successful login');
-        })
-        .error(function(data, status, headers) {
-          alert('failed login');
-        })
+  .controller('LoginCtrl', ['$scope', 'AuthService', '$window', function($scope, AuthService, $window) {
+    $scope.createSession = function(credentials) {
+      AuthService.login(credentials);
     };
   }])
   .controller('NewUserCtrl', ['$scope', '$http', '$window', '$cookies', function($scope, $http, $window, $cookies) {
@@ -33,13 +26,11 @@ controllers
         headers:{'Content-Type':undefined}
       })
       .success(function(d) {
-        // currentUser = {id: d.id, name: d.name, photo: d.photo.photo};
         $window.location.href = '/';
       })
     };
   }])
   .controller('UserShowCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
-    console.log(showedUser);
     $scope.user = showedUser.data;
     $scope.breads = $scope.user.breads;  
   }])
@@ -84,20 +75,27 @@ controllers
       $scope.comment = {};
     };
   }])
-  .controller('SideNavCtrl', ['$scope', '$rootScope', '$cookies', function($scope, $rootScope, $cookies) {
+  .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
+    $scope.currentUser = currentUser;
+    console.log($scope.currentUser.data);
+    $scope.loggedIn = function() {
+      if ($scope.currentUser.data == 'null') {
+        return false
+      } else { 
+        return true
+      }
+    };
+    console.log($scope.loggedIn())
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
     };
-    $scope.loggedIn = function() {
-      if ($cookies.user) {
-        return true;
-      } else{
-        return false;
-      };
+    $scope.clearSession = function() {
+      AuthService.logout();
     };
   }])
-  .controller('UserNavCtrl', ['$scope', 'showedUser', function($scope, showedUser) {
+  .controller('UserNavCtrl', ['$scope', 'showedUser', 'currentUser', function($scope, showedUser, currentUser) {
+    $scope.currentUser = currentUser;
     $scope.user = showedUser.data;
     $scope.userPhoto = $scope.user.photo.photo.normal.url;
   }]);

@@ -5,12 +5,12 @@
   <p><a href="#">warm bread</a></p>
   <p><a href="/breads/new">u even bake, bro?</a></p>
 </div>
-<div ng-show="loggedIn() == true">
+<div ng-show="loggedIn()">
   <div class="sidebar-small-links">
-    <p><a href="/api/logout">logout</a></p>
+    <p><a ng-click="clearSession()">logout</a></p>
   </div>  
 </div>
-<div ng-show="loggedIn() == false">
+<div ng-hide="loggedIn()">
   <div class="sidebar-small-links">
     <p><a href="/login">login</a></p>
     <p><a href="/users/new">signup</a></p>
