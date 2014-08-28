@@ -77,13 +77,15 @@ controllers
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
     $scope.currentUser = currentUser;
+    console.log($scope.currentUser.data);
     $scope.loggedIn = function() {
-      if (typeof $scope.currentUser === undefined) {
+      if ($scope.currentUser.data == 'null') {
         return false
       } else { 
-        return true 
+        return true
       }
     };
+    console.log($scope.loggedIn())
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);
@@ -91,8 +93,6 @@ controllers
     $scope.clearSession = function() {
       AuthService.logout();
     };
-    
-    // $scope.$evalAsync($scope.init());
   }])
   .controller('UserNavCtrl', ['$scope', 'showedUser', 'currentUser', function($scope, showedUser, currentUser) {
     $scope.currentUser = currentUser;

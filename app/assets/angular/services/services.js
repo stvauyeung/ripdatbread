@@ -5,7 +5,7 @@ app.factory('CurrentUser', ['$http', '$cookies', function($http, $cookies) {
     get: function() {
       return $http.get('/api/current_user/' + $cookies.user, {cache: true})
         .success(function(data){
-          console.log(data);
+          // console.log(data);
         })
     }
   }

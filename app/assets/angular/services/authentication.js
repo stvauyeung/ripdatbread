@@ -18,7 +18,7 @@ app.factory('AuthService', ['$http', '$window', '$cookies', function($http, $win
       return $http
         .get('/api/logout')
         .success(function(d) {
-          console.log('successful logout')
+          console.log('successful logout');
         })
     }
   }
