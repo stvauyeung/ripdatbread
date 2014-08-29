@@ -6,8 +6,8 @@
 <div id="landing-container">
   <span ng-repeat="bread in breads" class="bread-card-container">
     <div class="bread-card-inner-container">
-      <img ng-src="{{bread.imageUrl}}" class="bread-card">
-      <div class="bread-card-overlay">
+      <img ng-src="{{bread.photo.photo.url}}" class="bread-card">
+      <div class="bread-card-overlay" ng-click="linkToBread(bread.id)">
         <h5>{{bread.name}}</h5>
         <p>{{bread.rips}} rips | {{bread.dips}} dips</p>
         <h3>hungy?</h3>

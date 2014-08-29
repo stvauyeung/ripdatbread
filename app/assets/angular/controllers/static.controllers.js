@@ -1,10 +1,10 @@
 controllers = angular.module('staticCtrls', []);
 
 controllers
-  .controller('StaticHomeCtrl', ['$scope', function($scope) {
-    $scope.breads = [];
-    for (var i = 0; i < 30; i++) {
-      $scope.breads.push(angular.copy(bread1));
+  .controller('StaticHomeCtrl', ['$scope', 'recentBread', '$window', function($scope, recentBread, $window) {
+    $scope.breads = recentBread.data;
+    $scope.linkToBread = function(bread_id) {
+      $window.location.href = '/breads/'+bread_id;
     };
   }])
   .controller('LoginCtrl', ['$scope', 'AuthService', '$window', function($scope, AuthService, $window) {
@@ -51,10 +51,11 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', '$cookies', function($scope, showedBread, Vote, Comment, $window, $cookies) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', 'currentUser', function($scope, showedBread, Vote, Comment, $window, currentUser) {
     
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
+    $scope.currentUser = currentUser.data;
     
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
@@ -67,10 +68,13 @@ controllers
     };
 
     $scope.createComment = function(comment_text) {
-      comment = {text: comment_text, bread_id: $scope.bread.id}
+      comment = {
+        text: comment_text, 
+        bread_id: $scope.bread.id,
+        username: $scope.currentUser.name,
+        user_id: $scope.currentUser.id
+      }
       Comment.create(comment);
-      comment.username = $cookies.current_user;
-      comment.user_id = $cookies.user_id;
       $scope.bread.comments.unshift(comment);
       $scope.comment = {};
     };

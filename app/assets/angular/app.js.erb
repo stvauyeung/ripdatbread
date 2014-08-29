@@ -23,7 +23,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
     .state('landing', {
       url: '/',
       templateUrl: '<%= asset_path("templates/static_pages/landing.html") %>',
-      controller: 'StaticHomeCtrl'
+      controller: 'StaticHomeCtrl',
+      resolve: {
+        recentBread: ['Bread', function(Bread) {
+          return Bread.recentBread();
+        }]
+      }
     })
     .state('newSession', {
       url: '/login',
@@ -121,7 +126,10 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
             showedBread: ['Bread', '$stateParams', function(Bread, $stateParams) {
               bread = Bread.show($stateParams.id);
               return bread;
-            }]
+            }],
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }] 
           }
         }
       }
