@@ -132,6 +132,9 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
             }],
             currentUser: ['CurrentUser', function(CurrentUser) {
               return CurrentUser.get();
+            }],
+            nextBread: ['Bread', function(Bread) {
+              return Bread.nextBread();
             }] 
           }
         }

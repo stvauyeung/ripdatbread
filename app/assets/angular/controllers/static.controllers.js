@@ -62,12 +62,15 @@ controllers
       });
     };
   }])
-  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', 'currentUser', function($scope, showedBread, Vote, Comment, $window, currentUser) {
+  .controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$window', 'currentUser', 'nextBread', function($scope, showedBread, Vote, Comment, $window, currentUser, nextBread) {
     
     $scope.bread = showedBread.data;
     $scope.onInfo = true;
     $scope.currentUser = currentUser.data;
-    
+    $scope.nextBread = nextBread.data.id;
+    $scope.nextSlice = function(id) {
+      $window.location.href = '/breads/'+id;
+    };
     $scope.createVote = function(value) {
       vote = {bread_id: $scope.bread.id, value: value};
       Vote.create(vote);
