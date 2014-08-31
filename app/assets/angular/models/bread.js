@@ -19,6 +19,12 @@ app.factory('Bread', ['$http', '$window', function($http, $window) {
         .error(function(data, status, headers) {
           alert('error getting bread');
         })
+    },
+    recentBread: function() {
+      return $http.get('/api/recent_bread')
+        .success(function(data) {
+          return data;
+        })
     }
   }
 }]);

@@ -1,6 +1,6 @@
 app = angular.module('authService', []);
 
-app.factory('AuthService', ['$http', '$window', '$cookies', function($http, $window, $cookies) {
+app.factory('AuthService', ['$http', '$window', '$cookies', '$location', function($http, $window, $cookies, $location) {
 
   return {
     login: function(credentials) {
@@ -19,6 +19,7 @@ app.factory('AuthService', ['$http', '$window', '$cookies', function($http, $win
         .get('/api/logout')
         .success(function(d) {
           console.log('successful logout');
+          $window.location.href = $location.absUrl();
         })
     }
   }

@@ -14,6 +14,11 @@ class Api::BreadsController < ApplicationController
     render json: bread_owner, root: false
   end
 
+  def recent_bread
+    breads = Bread.find(:all, :order => "created_at desc", :limit => 30)
+    render json: breads, root: false
+  end
+
   def next_bread
     breads = Bread.all.map(&:id)
     count = breads.count
