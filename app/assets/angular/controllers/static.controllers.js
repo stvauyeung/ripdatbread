@@ -1,8 +1,19 @@
 controllers = angular.module('staticCtrls', []);
 
 controllers
-  .controller('StaticHomeCtrl', ['$scope', 'recentBread', '$window', function($scope, recentBread, $window) {
+  .controller('StaticHomeCtrl', ['$scope', 'recentBread', '$window', 'currentUser', function($scope, recentBread, $window, currentUser) {
     $scope.breads = recentBread.data;
+    $scope.currentUser = currentUser.data;
+    $scope.loggedIn = function() {
+      if ($scope.currentUser = "null") {
+        return false
+      } else{ 
+        return true 
+      }
+    };
+    $scope.linkToPage = function(link) {
+      $window.location.href = link;
+    }
     $scope.linkToBread = function(bread_id) {
       $window.location.href = '/breads/'+bread_id;
     };
@@ -80,16 +91,14 @@ controllers
     };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
-    $scope.currentUser = currentUser;
-    console.log($scope.currentUser.data);
+    $scope.currentUser = currentUser.data;
     $scope.loggedIn = function() {
-      if ($scope.currentUser.data == 'null') {
+      if ($scope.currentUser == 'null') {
         return false
       } else { 
         return true
       }
     };
-    console.log($scope.loggedIn())
     $scope.hideNav = function() {
       $rootScope.hideSideNav = true;
       console.log($rootScope.hideSideNav);

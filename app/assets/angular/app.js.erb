@@ -27,6 +27,9 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       resolve: {
         recentBread: ['Bread', function(Bread) {
           return Bread.recentBread();
+        }],
+        currentUser: ['CurrentUser', function(CurrentUser) {
+          return CurrentUser.get();
         }]
       }
     })

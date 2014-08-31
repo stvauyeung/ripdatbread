@@ -3,6 +3,12 @@
   <h2>find awesome bread,<br> rip as you please!</h2>
 </div>
 
+<div class="landing-navigation">
+  <span ng-click="linkToPage('/login')">login</span>
+  <span ng-click="linkToPage('/users/new')">signup</span>
+  <span ng-click="linkToPage('#')">about</span>
+</div>
+
 <div id="landing-container">
   <span ng-repeat="bread in breads" class="bread-card-container">
     <div class="bread-card-inner-container">
