@@ -1,4 +1,6 @@
 class BreadsController < ApplicationController
+  before_filter :require_login, only: :new
+
   def new
     
   end

@@ -15,7 +15,7 @@ Ripdatbread::Application.routes.draw do
   
   get 'ui(/:action)', controller: 'ui'
   root to: 'static_pages#home', as: 'home'
-  get 'login', to: 'sessions#new'
+  get 'login', to: 'sessions#new', as: 'login'
   get 'users/new', to: 'users#new'
   get 'users/:id', to: 'users#show'
   get 'breads/new', to: 'breads#new'
