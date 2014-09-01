@@ -11,6 +11,7 @@ Ripdatbread::Application.routes.draw do
     get '/breads/:id', to: 'breads#show'
     get '/recent_bread', to: 'breads#recent_bread'
     get '/next_bread', to: 'breads#next_bread'
+    get '/yummy', to: 'breads#yummy_bread'
   end
   
   get 'ui(/:action)', controller: 'ui'
@@ -20,4 +21,5 @@ Ripdatbread::Application.routes.draw do
   get 'users/:id', to: 'users#show', as: 'user'
   get 'breads/new', to: 'breads#new'
   get 'breads/:id', to: 'breads#show'
+  get 'yummy', to: 'breads#yummy'
 end

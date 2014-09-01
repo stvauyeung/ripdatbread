@@ -93,6 +93,9 @@ controllers
       $scope.comment = {};
     };
   }])
+  .controller('YummyBreadCtrl', ['$scope', 'yummyBreads', function($scope, yummyBreads) {
+    $scope.breads = yummyBreads.data;
+  }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
     $scope.currentUser = currentUser.data;
     $scope.loggedIn = function() {

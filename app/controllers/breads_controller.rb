@@ -8,4 +8,8 @@ class BreadsController < ApplicationController
   def show
     
   end
+
+  def yummy
+    
+  end
 end

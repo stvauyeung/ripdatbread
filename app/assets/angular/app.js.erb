@@ -140,8 +140,27 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         }
       }
     })
-    .state('breadIndex', {
-      url: '/ui/bread',
-      templateUrl: '<%= asset_path("templates/ui/bread.html") %>'
-    });
+    .state('topBreads', {
+      url: '/yummy',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/bread/yummy.html") %>',
+          controller: 'YummyBreadCtrl',
+          resolve: {
+            yummyBreads: ['Bread', function(Bread) {
+              return Bread.yummyBread();
+            }]
+          }
+        }
+      }
+    })
 }]);
