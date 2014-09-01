@@ -17,7 +17,7 @@ Ripdatbread::Application.routes.draw do
   root to: 'static_pages#home', as: 'home'
   get 'login', to: 'sessions#new', as: 'login'
   get 'users/new', to: 'users#new'
-  get 'users/:id', to: 'users#show'
+  get 'users/:id', to: 'users#show', as: 'user'
   get 'breads/new', to: 'breads#new'
   get 'breads/:id', to: 'breads#show'
 end

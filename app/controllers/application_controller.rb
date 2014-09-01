@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
+
+  def require_logout
+    if logged_in?
+      flash[:error] = "where are you going, dave?"
+      redirect_to user_path(current_user)
+    end
+  end
 end
