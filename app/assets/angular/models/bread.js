@@ -25,6 +25,12 @@ app.factory('Bread', ['$http', '$window', function($http, $window) {
         .success(function(data) {
           return data;
         })
+    },
+    nextBread: function() {
+      return $http.get('/api/next_bread')
+        .success(function(data) {
+          return data;
+        })
     }
   }
 }]);

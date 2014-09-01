@@ -9,7 +9,8 @@ Ripdatbread::Application.routes.draw do
     post '/comments', to: 'comments#create'
     get '/users/:id', to: 'users#show'
     get '/breads/:id', to: 'breads#show'
-    get 'recent_bread', to: 'breads#recent_bread'
+    get '/recent_bread', to: 'breads#recent_bread'
+    get '/next_bread', to: 'breads#next_bread'
   end
   
   get 'ui(/:action)', controller: 'ui'

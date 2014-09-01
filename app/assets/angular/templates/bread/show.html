@@ -1,7 +1,7 @@
 <div class="bread-show-container">
   <div class="bread-nav-links">
-    <span id="last">&#9664; LAST SLICE</span>
-    <span id="next">NEXT SLICE &#9654;</span>
+    <span id="last" last-slice>&#9664; LAST SLICE</span>
+    <span id="next" ng-click="nextSlice(nextBread)">NEXT SLICE &#9654;</span>
   </div>
   <div class="bread-image-holder" ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay =false">
     <img ng-src="{{bread.photo.url}}">

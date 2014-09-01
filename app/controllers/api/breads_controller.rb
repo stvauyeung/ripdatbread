@@ -22,7 +22,8 @@ class Api::BreadsController < ApplicationController
   def next_bread
     breads = Bread.all.map(&:id)
     count = breads.count
-    rand = Number.random
+    next_bread = Bread.find(breads[rand(count)-1])
+    render json: next_bread, root: false
   end
 
   private
