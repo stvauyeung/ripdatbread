@@ -114,3 +114,31 @@ app
       }
     }
   }])
+  .directive('reloadLink', ['$window', function($window) {
+    return {
+      restrict: 'A',
+      link: function(scope, elm, attr) {
+        elm.on('click', function() {
+          $window.location.href = attr.href;
+        })
+      }
+    }
+  }])
+  .directive('requireLogin', ['$cookies', '$rootScope', '$sce', function($cookies, $rootScope, $sce) {
+    return {
+      restrict: 'A',
+      link: function(scope, elm, attr) {
+        $rootScope.alerts = [];
+
+        $rootScope.closeAlert = function(index) {
+          $rootScope.alerts.splice(index, 1);
+        }
+
+        elm.on('click', function() {
+          if ($cookies.user === null || $cookies.user === undefined) {
+            $rootScope.alerts.push({type: 'danger', msg: $sce.trustAsHtml('You must be <a reload-link href="/login">logged in</a> to do that')})
+          }
+        });
+      }
+    }
+  }])

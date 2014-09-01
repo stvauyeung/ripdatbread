@@ -20,6 +20,8 @@ class Api::BreadsController < ApplicationController
   end
 
   def next_bread
+    # store previous bread, cached
+    # @previous_bread = Bread.find()
     breads = Bread.all.map(&:id)
     count = breads.count
     next_bread = Bread.find(breads[rand(count)-1])
