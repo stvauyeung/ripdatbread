@@ -104,3 +104,13 @@ app
       }
     }
   }])
+  .directive('lastSlice', ['$window', function($window) {
+    return {
+      restrict: 'A',
+      link: function(scope, elm, attrs) {
+        elm.on('click', function() {
+          $window.history.back();
+        });
+      }
+    }
+  }])
