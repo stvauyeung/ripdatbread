@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def require_logout
     if logged_in?
-      flash[:error] = "where are you going, dave?"
+      flash[:error] = "you're already logged in"
       redirect_to user_path(current_user)
     end
   end

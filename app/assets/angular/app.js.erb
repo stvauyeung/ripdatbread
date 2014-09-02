@@ -111,7 +111,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/new_bread.html") %>',
-          controller: 'NewBreadCtrl'
+          controller: 'NewBreadCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         }
       }
     })
