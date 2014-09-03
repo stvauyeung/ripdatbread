@@ -11,9 +11,6 @@ controllers
         return true 
       }
     };
-    $scope.linkToPage = function(link) {
-      $window.location.href = link;
-    }
     $scope.linkToBread = function(bread_id) {
       $window.location.href = '/breads/'+bread_id;
     };
