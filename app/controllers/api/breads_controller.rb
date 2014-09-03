@@ -24,6 +24,11 @@ class Api::BreadsController < ApplicationController
     render json: breads, root: false
   end
 
+  def hot_bread
+    breads = Bread.find(:all, :order => "created_at desc")
+    render json: breads, root: false
+  end
+
   def next_bread
     # store previous bread, cached
     # @previous_bread = Bread.find()

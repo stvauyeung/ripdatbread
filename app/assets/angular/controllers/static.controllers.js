@@ -97,6 +97,9 @@ controllers
   .controller('YummyBreadCtrl', ['$scope', 'yummyBreads', function($scope, yummyBreads) {
     $scope.breads = yummyBreads.data;
   }])
+  .controller('HotBreadCtrl', ['$scope', 'hotBreads', function($scope, hotBreads) {
+    $scope.breads = hotBreads.data;
+  }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
     $scope.currentUser = currentUser.data;
     $scope.loggedIn = function() {

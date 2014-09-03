@@ -37,6 +37,12 @@ app.factory('Bread', ['$http', '$window', function($http, $window) {
         .success(function(data) {
           return data;
         })
+    },
+    hotBread: function() {
+      return $http.get('/api/hot')
+        .success(function(data) {
+          return data;
+        })
     }
   }
 }]);

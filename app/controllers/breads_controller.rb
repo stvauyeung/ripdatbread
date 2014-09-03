@@ -12,4 +12,8 @@ class BreadsController < ApplicationController
   def yummy
     
   end
+
+  def hot
+    
+  end
 end

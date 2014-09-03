@@ -173,4 +173,27 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         }
       }
     })
+    .state('newBreads', {
+      url: '/hot',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/bread/hot.html") %>',
+          controller: 'HotBreadCtrl',
+          resolve: {
+            hotBreads: ['Bread', function(Bread) {
+              return Bread.hotBread();
+            }]
+          }
+        }
+      }
+    })
 }]);
