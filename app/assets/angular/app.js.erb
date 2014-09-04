@@ -56,7 +56,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
       views: {
         'nav@': {
           templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
-          controller: 'SideNavCtrl'
+          controller: 'SideNavCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/user/new_user.html") %>',
@@ -106,7 +111,12 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         },
         'main@': {
           templateUrl: '<%= asset_path("templates/bread/new_bread.html") %>',
-          controller: 'NewBreadCtrl'
+          controller: 'NewBreadCtrl',
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
         }
       }
     })
@@ -140,8 +150,50 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
         }
       }
     })
-    .state('breadIndex', {
-      url: '/ui/bread',
-      templateUrl: '<%= asset_path("templates/ui/bread.html") %>'
-    });
+    .state('topBreads', {
+      url: '/yummy',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/bread/yummy.html") %>',
+          controller: 'YummyBreadCtrl',
+          resolve: {
+            yummyBreads: ['Bread', function(Bread) {
+              return Bread.yummyBread();
+            }]
+          }
+        }
+      }
+    })
+    .state('newBreads', {
+      url: '/hot',
+      views: {
+        'nav@': {
+          templateUrl: '<%= asset_path("templates/nav_bars/side_nav.html") %>',
+          controller: "SideNavCtrl",
+          resolve: {
+            currentUser: ['CurrentUser', function(CurrentUser) {
+              return CurrentUser.get();
+            }]
+          }
+        },
+        'main@': {
+          templateUrl: '<%= asset_path("templates/bread/hot.html") %>',
+          controller: 'HotBreadCtrl',
+          resolve: {
+            hotBreads: ['Bread', function(Bread) {
+              return Bread.hotBread();
+            }]
+          }
+        }
+      }
+    })
 }]);

@@ -11,9 +11,6 @@ controllers
         return true 
       }
     };
-    $scope.linkToPage = function(link) {
-      $window.location.href = link;
-    }
     $scope.linkToBread = function(bread_id) {
       $window.location.href = '/breads/'+bread_id;
     };
@@ -45,7 +42,11 @@ controllers
     $scope.user = showedUser.data;
     $scope.breads = $scope.user.breads;  
   }])
-  .controller('NewBreadCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  .controller('NewBreadCtrl', ['$scope', '$http', '$window', 'currentUser', function($scope, $http, $window, currentUser) {
+    if (currentUser.data === 'null') {
+      $window.location.href = '/login';
+      $rootScope.alerts.push({type: 'danger', msg: $sce.trustAsHtml('You must be logged in to do that')});
+    };
     $scope.createBread = function(bread) {
       var fd = new FormData();
       fd.append('photo', $scope.files[0]);
@@ -92,6 +93,12 @@ controllers
       $scope.bread.comments.unshift(comment);
       $scope.comment = {};
     };
+  }])
+  .controller('YummyBreadCtrl', ['$scope', 'yummyBreads', function($scope, yummyBreads) {
+    $scope.breads = yummyBreads.data;
+  }])
+  .controller('HotBreadCtrl', ['$scope', 'hotBreads', function($scope, hotBreads) {
+    $scope.breads = hotBreads.data;
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
     $scope.currentUser = currentUser.data;
