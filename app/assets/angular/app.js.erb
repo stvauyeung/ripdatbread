@@ -1,20 +1,3 @@
-var user = {
-  name: 'Peanut',
-  imageUrl: '/swedish-chef.jpg',
-  breadCount: 25,
-  rips: 32,
-  dips: 18
-}
-
-var bread1 = {
-  name: 'Yummy bread',
-  rips: 3,
-  dips: 12,
-  imageUrl: '/bread4.jpg',
-  description: 'This is my favorite bread of all time.  Love this bread.',
-  user: user
-}
-
 bread = angular.module('bread', ['ui.router', 'ngCookies', 'breadControllers', 'ui.bootstrap', 'Directives', 'ripDatBreadModels', 'angularFileUpload', 'breadServices']);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {

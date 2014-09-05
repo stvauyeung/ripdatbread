@@ -1,7 +1,7 @@
 <div class="container user-show-container">
   <h1 class="user-content-header">Top Breads</h1>
   <div ng-repeat="bread in breads">
-    <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="bread-results-image">
+    <div ng-mouseenter="showOverlay = true" ng-mouseleave="showOverlay = false" class="results-image-holder">
       <img ng-src="{{bread.photo.photo.url}}">
       <div ng-show="showOverlay" class="user-bread-img-overlay" ng-click="linkToBread(bread.id)">
         <h1>{{bread.name}}</h1>

@@ -25,7 +25,7 @@ class Api::BreadsController < ApplicationController
   end
 
   def hot_bread
-    breads = Bread.find(:all, :order => "created_at desc")
+    breads = Bread.find(:all, :order => "votes_count desc")
     render json: breads, root: false
   end
 
