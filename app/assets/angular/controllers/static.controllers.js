@@ -100,8 +100,11 @@ controllers
       $window.location.href = '/breads/'+bread_id;
     };
   }])
-  .controller('HotBreadCtrl', ['$scope', 'hotBreads', function($scope, hotBreads) {
+  .controller('HotBreadCtrl', ['$scope', 'hotBreads', '$window', function($scope, hotBreads, $window) {
     $scope.breads = hotBreads.data;
+    $scope.linkToBread = function(bread_id) {
+      $window.location.href = '/breads/'+bread_id;
+    };
   }])
   .controller('SideNavCtrl', ['$scope', '$rootScope', 'AuthService', 'currentUser', function($scope, $rootScope, AuthService, currentUser) {
     $scope.currentUser = currentUser.data;
