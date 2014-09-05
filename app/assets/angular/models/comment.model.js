@@ -1,4 +1,4 @@
-app = angular.module('commentModel', []);
+var app = angular.module('Comment.Model', []);
 
 app.factory('Comment', ['$http', '$rootScope', function($http, $rootScope) {
   return {

@@ -13,11 +13,11 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require angular-file-upload-shim.min.js
 //= require angular
+//= require angular-file-upload-shim.min.js
 //= require angular-cookies
 //= require angular-ui-router
 //= require angular-ui-bootstrap-tpls
-//= require_tree ../angular
 //= require ../angular/app.js.erb
+//= require_tree ../angular
 //= require_tree .

@@ -1,4 +1,4 @@
-app = angular.module('voteModel', []);
+var app = angular.module('Vote.Model', []);
 
 app.factory('Vote', ['$http', '$rootScope', function($http, $rootScope) {
   return {

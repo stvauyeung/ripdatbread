@@ -4,7 +4,7 @@ var user = {
   breadCount: 25,
   rips: 32,
   dips: 18
-}
+};
 
 var bread1 = {
   name: 'Yummy bread',
@@ -13,9 +13,19 @@ var bread1 = {
   imageUrl: '/bread4.jpg',
   description: 'This is my favorite bread of all time.  Love this bread.',
   user: user
-}
+};
 
-bread = angular.module('bread', ['ui.router', 'ngCookies', 'breadControllers', 'ui.bootstrap', 'Directives', 'ripDatBreadModels', 'angularFileUpload', 'breadServices']);
+var bread = angular.module('bread', 
+  [
+    'breadControllers',
+    'breadDirectives', 
+    'breadModels', 
+    'breadServices',
+    'ui.router', 
+    'ngCookies', 
+    'ui.bootstrap',
+    'angularFileUpload'
+  ]);
 
 bread.config(['$locationProvider', '$stateProvider', function($locationProvider, $stateProvider) {
   $locationProvider.html5Mode(true);
@@ -195,5 +205,5 @@ bread.config(['$locationProvider', '$stateProvider', function($locationProvider,
           }
         }
       }
-    })
+    });
 }]);
