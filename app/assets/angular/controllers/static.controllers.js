@@ -94,8 +94,11 @@ controllers
       $scope.comment = {};
     };
   }])
-  .controller('YummyBreadCtrl', ['$scope', 'yummyBreads', function($scope, yummyBreads) {
+  .controller('YummyBreadCtrl', ['$scope', 'yummyBreads', '$window', function($scope, yummyBreads, $window) {
     $scope.breads = yummyBreads.data;
+    $scope.linkToBread = function(bread_id) {
+      $window.location.href = '/breads/'+bread_id;
+    };
   }])
   .controller('HotBreadCtrl', ['$scope', 'hotBreads', function($scope, hotBreads) {
     $scope.breads = hotBreads.data;
