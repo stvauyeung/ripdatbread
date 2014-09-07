@@ -1,4 +1,4 @@
-app = angular.module('authService', []);
+var app = angular.module('breadServices', ['ngCookies']);
 
 app.factory('AuthService', ['$http', '$window', '$cookies', '$location', function($http, $window, $cookies, $location) {
 
@@ -24,4 +24,15 @@ app.factory('AuthService', ['$http', '$window', '$cookies', '$location', functio
     }
   }
 
+}]);
+
+app.factory('CurrentUser', ['$http', '$cookies', function($http, $cookies) {
+  return {
+    get: function() {
+      return $http.get('/api/current_user/' + $cookies.user, {cache: true})
+        .success(function(data){
+          // console.log(data);
+        })
+    }
+  }
 }]);

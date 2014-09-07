@@ -1,4 +1,4 @@
-app = angular.module('userModel', []);
+var app = angular.module('User.Model', []);
 
 app.factory('User', ['$http', '$window', function($http, $window) {
   return {

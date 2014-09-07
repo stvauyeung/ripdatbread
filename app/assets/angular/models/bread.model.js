@@ -1,4 +1,4 @@
-app = angular.module('breadModel', []);
+var app = angular.module('Bread.Model', []);
 
 app.factory('Bread', ['$http', '$window', function($http, $window) {
   return {

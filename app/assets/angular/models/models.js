@@ -1,1 +1,0 @@
-angular.module('ripDatBreadModels', ['userModel', 'breadModel', 'voteModel', 'commentModel']);
