@@ -56,10 +56,16 @@ app.controller('BreadShowCtrl', ['$scope', 'showedBread', 'Vote', 'Comment', '$w
   };
 }]);
   
-app.controller('YummyBreadCtrl', ['$scope', 'yummyBreads', function($scope, yummyBreads) {
+app.controller('YummyBreadCtrl', ['$scope', 'yummyBreads', '$window', function($scope, yummyBreads, $window) {
   $scope.breads = yummyBreads.data;
+  $scope.linkToBread = function(bread_id) {
+    $window.location.href = '/breads/'+bread_id;
+  };
 }]);
 
-app.controller('HotBreadCtrl', ['$scope', 'hotBreads', function($scope, hotBreads) {
+app.controller('HotBreadCtrl', ['$scope', 'hotBreads', '$window', function($scope, hotBreads, $window) {
   $scope.breads = hotBreads.data;
+  $scope.linkToBread = function(bread_id) {
+    $window.location.href = '/breads/'+bread_id;
+  };
 }]);
