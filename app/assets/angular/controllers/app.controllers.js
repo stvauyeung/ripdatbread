@@ -1,21 +1,4 @@
-var app = angular.module('breadControllers', ['User.Controller', 'Bread.Controller']);
-
-app.controller('StaticHomeCtrl', ['$scope', 'recentBread', '$window', 'currentUser', function($scope, recentBread, $window, currentUser) {
-    
-  $scope.breads = recentBread.data;
-  $scope.currentUser = currentUser.data;
-  $scope.loggedIn = function() {
-    if ($scope.currentUser = "null") {
-      return false
-    } else{ 
-      return true 
-    }
-  };
-  $scope.linkToBread = function(bread_id) {
-    $window.location.href = '/breads/'+bread_id;
-  
-  };
-}]);
+var app = angular.module('breadControllers', ['User.Controller', 'Bread.Controller', 'Static.Controller']);
 
 app.controller('LoginCtrl', ['$scope', 'AuthService', '$window', function($scope, AuthService, $window) {
 
