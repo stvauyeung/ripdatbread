@@ -1,0 +1,23 @@
+<div class="main-title">
+  <h1>#RIPDATBREAD</h1>
+  <h2>find awesome bread,<br> rip as you please!</h2>
+</div>
+
+<div class="landing-navigation">
+  <span><a href="/login" reload-link>login</a></span>
+  <span><a href="/users/new" reload-link>signup</a></span>
+  <span><a href="#" reload-link>about</a></span>
+</div>
+
+<div id="landing-container">
+  <span ng-repeat="bread in breads" class="bread-card-container">
+    <div class="bread-card-inner-container">
+      <img ng-src="{{bread.photo.photo.url}}" class="bread-card">
+      <div class="bread-card-overlay" ng-click="linkToBread(bread.id)">
+        <h5>{{bread.name}}</h5>
+        <p>{{bread.rips}} rips | {{bread.dips}} dips</p>
+        <h3>hungy?</h3>
+      </div>
+    </div>
+  </span>
+</div>
