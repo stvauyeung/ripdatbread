@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem "rmagick", require: false
 gem "carrierwave"
+gem "fog"
+gem "figaro"
 
 gem 'active_model_serializers'
 
